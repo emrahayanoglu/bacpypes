@@ -111,6 +111,9 @@ class ObjectTypesSupported(BitString):
         , 'alertEnrollment':52
         , 'channel':53
         , 'lightingOutput':54
+        , 'elevatorGroup': 57
+        , 'lift': 59
+        , 'escalator': 58
         }
     bitLen = 55
 
@@ -1459,6 +1462,12 @@ class PropertyIdentifier(Enumerated):
         , 'zoneFrom':320
         , 'zoneMembers':165
         , 'zoneTo':321
+        , 'machineRoomId':474
+        , 'groupId':465
+        , 'elevatorGroup':459
+        , 'installationId':469
+        , 'floorText':464
+        , 'carPosition':458
         }
 
 class Reliability(Enumerated):

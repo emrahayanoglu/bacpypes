@@ -2173,3 +2173,26 @@ class TrendLogMultipleObject(Object):
         , OptionalProperty('eventAlgorithmInhibit', Boolean)
         , OptionalProperty('reliabilityEvaluationInhibit', Boolean)
         ]
+
+
+@register_object_type
+class ElevatorGroupObject(Object):
+    objectType = 'elevatorGroup'
+    properties = \
+        [ ReadableProperty('machineRoomId', ObjectIdentifier)
+        , ReadableProperty('groupId', Unsigned)
+        , OptionalProperty('groupMembers', ArrayOf(ObjectIdentifier))
+        ]
+
+
+@register_object_type
+class LiftObject(Object):
+    objectType = 'lift'
+    properties = \
+        [ ReadableProperty('statusFlags', StatusFlags)
+        , ReadableProperty('elevatorGroup', ObjectIdentifier)
+        , ReadableProperty('groupId', Unsigned)
+        , ReadableProperty('installationId', Unsigned)
+        , OptionalProperty('floorText', ArrayOf(CharacterString))
+        , ReadableProperty('carPosition', Unsigned)
+        ]

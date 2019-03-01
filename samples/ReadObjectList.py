@@ -13,7 +13,7 @@ from bacpypes.consolelogging import ConfigArgumentParser
 from bacpypes.core import run, deferred, stop
 from bacpypes.iocb import IOCB
 
-from bacpypes.primitivedata import ObjectIdentifier, CharacterString
+from bacpypes.primitivedata import ObjectIdentifier, CharacterString, Unsigned
 from bacpypes.constructeddata import ArrayOf
 
 from bacpypes.pdu import Address
@@ -137,11 +137,16 @@ class ReadObjectListApplication(BIPSimpleApplication):
         object_id = context._object_list_queue.popleft()
         if _debug: ReadObjectListApplication._debug("    - object_id: %r", object_id)
 
+        property_identifier = 'objectName'
+
+        if object_id[0] == 59:
+            property_identifier = 'carPosition'
+
         # build a request for the object name
         request = ReadPropertyRequest(
             destination=context.device_addr,
             objectIdentifier=object_id,
-            propertyIdentifier='objectName',
+            propertyIdentifier=property_identifier,
             )
         if _debug: ReadObjectListApplication._debug("    - request: %r", request)
 
@@ -177,7 +182,10 @@ class ReadObjectListApplication(BIPSimpleApplication):
             return
 
         # pull out the name
-        object_name = apdu.propertyValue.cast_out(CharacterString)
+        if apdu.propertyIdentifier == 'carPosition':
+            object_name = apdu.propertyValue.cast_out(Unsigned)
+        else:
+            object_name = apdu.propertyValue.cast_out(CharacterString)
         if _debug: ReadObjectListApplication._debug("    - object_name: %r", object_name)
 
         # store it in the context

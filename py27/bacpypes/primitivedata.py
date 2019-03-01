@@ -1640,6 +1640,9 @@ class ObjectType(Enumerated):
         , 'timeValue':50
         , 'trendLog':20
         , 'trendLogMultiple':27
+        , 'elevatorGroup': 57
+        , 'lift': 59
+        , 'escalator': 58
         }
 
 expand_enumerations(ObjectType)
