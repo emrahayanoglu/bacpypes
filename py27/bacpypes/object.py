@@ -39,7 +39,8 @@ from .basetypes import AccessCredentialDisable, AccessCredentialDisableReason, \
     PropertyIdentifier, Recipient, Reliability, RestartReason, Scale, \
     SecurityKeySet, SecurityLevel, Segmentation, ServicesSupported, \
     SetpointReference, ShedLevel, ShedState, SilencedState, SpecialEvent, \
-    StatusFlags, TimeStamp, VTClass, VTSession, WriteStatus
+    StatusFlags, TimeStamp, VTClass, VTSession, WriteStatus, LiftCarDirection, \
+    LiftFault
 from .apdu import EventNotificationParameters, ReadAccessSpecification, \
     ReadAccessResult
 
@@ -2195,4 +2196,12 @@ class LiftObject(Object):
         , ReadableProperty('installationId', Unsigned)
         , OptionalProperty('floorText', ArrayOf(CharacterString))
         , ReadableProperty('carPosition', Unsigned)
+        , ReadableProperty('carMovingDirection', LiftCarDirection)
+        , OptionalProperty('carAssignedDirection', LiftCarDirection)
+        , ReadableProperty('carDoorStatus', ArrayOf(DoorStatus))
+        , OptionalProperty('carDoorZone', Boolean)
+        , OptionalProperty('carLoad', Real)
+        , OptionalProperty('nextStoppingFloor', Unsigned)
+        , ReadableProperty('passengerAlarm', Boolean)
+        , ReadableProperty('faultSignals', ListOf(LiftFault))
         ]

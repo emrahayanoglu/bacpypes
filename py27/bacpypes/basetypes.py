@@ -447,6 +447,13 @@ class DoorStatus(Enumerated):
         { 'closed':0
         , 'opened':1
         , 'unknown':2
+        , 'doorFault':3
+        , 'unused':4
+        , 'none':5
+        , 'closing':6
+        , 'opening':7
+        , 'safetyLocked':8
+        , 'limitedOpened':9
         }
 
 class DoorValue(Enumerated):
@@ -1468,6 +1475,14 @@ class PropertyIdentifier(Enumerated):
         , 'installationId':469
         , 'floorText':464
         , 'carPosition':458
+        , 'carMovingDirection':457
+        , 'carAssignedDirection':448
+        , 'carDoorStatus':450
+        , 'carDoorZone':452
+        , 'carLoad':454
+        , 'nextStoppingFloor':476
+        , 'passengerAlarm':478
+        , 'faultSignals':463
         }
 
 class Reliability(Enumerated):
@@ -1573,6 +1588,37 @@ class WriteStatus(Enumerated):
         , 'inProgress':1
         , 'successful':2
         , 'failed':3
+        }
+
+class LiftCarDirection(Enumerated):
+    enumerations = \
+        { 'unknown':0
+        , 'none':1
+        , 'stopped':2
+        , 'up':3
+        , 'down':4
+        , 'up-and-down':5
+        }
+
+class LiftFault(Enumerated):
+    enumerations = \
+        { 'controller-fault':0
+        , 'drive-and-motor-fault':1
+        , 'governor-and-safety-gear-fault':2
+        , 'lift-shaft-device-fault':3
+        , 'power-supply-fault':4
+        , 'safety-interlock-fault':5
+        , 'door-closing-fault':6
+        , 'door-opening-fault':7
+        , 'car-stopped-outside-landing-zone':8
+        , 'call-button-stuck':9
+        , 'start-failure':10
+        , 'controller-supply-fault':11
+        , 'self-test-failure':12
+        , 'runtime-limit-exceeded':13
+        , 'position-lost':14
+        , 'drive-temperature-exceeded':15
+        , 'load-measurement-fault':16
         }
 
 #
